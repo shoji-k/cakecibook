@@ -19,6 +19,39 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       :owner => "vagrant",
       :group => "www-data",
       :mount_options => ["dmode=755,fmode=775"]
+
+    c.vm.provision :chef_solo do |chef|
+      chef.log_level = "debug"
+      chef.cookbooks_path = "./cookbooks"
+      chef.json = {
+        nginx: {
+          docroot: {
+            owner: "vagrant",
+            group: "vagrant",
+            path: "/var/www/application/current/app/webroot",
+            force_create: true
+          },
+          default: { 
+            fastcgi_params: {  CAKE_ENV: "development" }
+          },
+          test: {
+            available: true,
+            fastcgi_params: {  CAKE_ENV: "test" }
+          }
+        }
+      }
+      chef.run_list = %w[
+        recipe[apt]
+        recipe[phpenv::default]
+        recipe[phpenv::composer]
+        recipe[phpenv::develop]
+        recipe[capistrano]
+      ]
+      chef.run_list = %w[
+        recipe[apt]
+        recipe[phpenv::default]
+      ]
+    end
   end
 
   config.vm.define :ci do |c|
