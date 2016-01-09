@@ -6,3 +6,7 @@ vagrant plugin install vagrant-omnibus
 
 # add flag of vagrant-omnibus to Vagrantfile
 
+# install cache for apt
+vagrant plugin install vagrant-cachier
+
+# add setting of vagrant-cachier to Vagrantfile
