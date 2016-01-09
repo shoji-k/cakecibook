@@ -18,3 +18,7 @@ vagrant plugin install vagrant-cachier
 # prepare chef-solo
 knife solo init --berkshelf .
 
+# chef recipe as book
+
+# install capistrano
+## fix http://tech.g.hatena.ne.jp/rx7/20150731/p1
