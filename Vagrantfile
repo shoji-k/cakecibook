@@ -13,6 +13,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     c.vm.hostname = 'develop'
     c.vm.box = 'opscode-ubuntu-14.04'
     c.vm.network "private_network", ip: "192.168.33.10"
+
+    c.vm.synced_folder "application", "/var/www/application/current",
+      id: "vagrant-root", :nfs => false,
+      :owner => "vagrant",
+      :group => "www-data",
+      :mount_options => ["dmode=755,fmode=775"]
   end
 
   config.vm.define :ci do |c|
