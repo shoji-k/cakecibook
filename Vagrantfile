@@ -5,13 +5,35 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.cache.scope = :box
+
+  config.vm.define :develop do |c|
+    c.omnibus.chef_version = :latest
+    c.vm.hostname = 'develop'
+    c.vm.box = 'opscode-ubuntu-14.04'
+    c.vm.network "private_network", ip: "192.168.33.10"
+  end
+
+  config.vm.define :ci do |c|
+    c.omnibus.chef_version = :latest
+    c.vm.hostname = 'ci'
+    c.vm.box = 'opscode-ubuntu-14.04'
+    c.vm.network "private_network", ip: "192.168.33.100"
+  end
+
+  config.vm.define :deploy do |c|
+    c.omnibus.chef_version = :latest
+    c.vm.hostname = 'deploy'
+    c.vm.box = 'opscode-ubuntu-14.04'
+    c.vm.network "private_network", ip: "192.168.33.200"
+  end
+
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "opscode-ubuntu-14.04"
-
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -119,8 +141,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
-
-  config.omnibus.chef_version = :lastest
-  config.cache.scope = :box
 
 end
