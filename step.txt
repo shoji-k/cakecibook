@@ -10,3 +10,11 @@ vagrant plugin install vagrant-omnibus
 vagrant plugin install vagrant-cachier
 
 # add setting of vagrant-cachier to Vagrantfile
+
+# prepare 3 vm
+
+# install chef by bundler
+
+# prepare chef-solo
+knife solo init --berkshelf .
+
