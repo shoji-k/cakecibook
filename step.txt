@@ -1,0 +1,8 @@
+
+vagrant init opscode-ubuntu-14.04
+
+# install chef automatically
+vagrant plugin install vagrant-omnibus
+
+# add flag of vagrant-omnibus to Vagrantfile
+
