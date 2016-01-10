@@ -31,7 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             path: "/var/www/application/current/app/webroot",
             force_create: true
           },
-          default: { 
+          default: {
             fastcgi_params: {  CAKE_ENV: "development" }
           },
           test: {
@@ -55,6 +55,42 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     c.vm.hostname = 'ci'
     c.vm.box = 'opscode-ubuntu-14.04'
     c.vm.network "private_network", ip: "192.168.33.100"
+
+    c.vm.provision :chef_solo do |chef|
+      chef.log_level = "debug"
+      chef.cookbooks_path = "./cookbooks"
+      chef.json = {
+        nginx: {
+          docroot: {
+            path: "/var/lib/jenkins/jobs/blogapp/workspace/app/webroot",
+          },
+          default: {
+            fastcgi_params: { CAKE_ENV: "development" }
+          },
+          test: {
+            available: true,
+            fastcgi_params: { CAKE_ENV: "ci" }
+          }
+        }
+      }
+      chef.run_list = %w[
+        recipe[apt]
+        recipe[phpenv::default]
+        recipe[phpenv::composer]
+        recipe[phpenv::develop]
+        recipe[capistrano]
+        recipe[jenkins::default]
+        recipe[jenkins::plugin]
+      ]
+      # remove jenkins because failed
+      chef.run_list = %w[
+        recipe[apt]
+        recipe[phpenv::default]
+        recipe[phpenv::composer]
+        recipe[phpenv::develop]
+        recipe[capistrano]
+      ]
+    end
   end
 
   config.vm.define :deploy do |c|
@@ -62,6 +98,28 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     c.vm.hostname = 'deploy'
     c.vm.box = 'opscode-ubuntu-14.04'
     c.vm.network "private_network", ip: "192.168.33.200"
+
+    c.vm.provision :chef_solo do |chef|
+      chef.log_level = "debug"
+      chef.cookbooks_path = "./cookbooks"
+      chef.json = {
+        nginx: {
+          docroot: {
+            owner: "vagrant",
+            group: "vagrant",
+            path: "/var/www/application/current/app/webroot",
+          },
+          default: {
+            fastcgi_params: {  CAKE_ENV: "production" }
+          }
+        }
+      }
+      chef.run_list = %w[
+        recipe[apt]
+        recipe[phpenv::default]
+        recipe[phpenv::composer]
+      ]
+    end
   end
 
   # All Vagrant configuration is done here. The most common configuration
