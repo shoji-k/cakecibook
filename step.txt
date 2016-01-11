@@ -65,3 +65,7 @@ Console/cake Bdd.init
 
 # change behat.yml
 
+# prepare bdd story
+
+# install migration plugin
+composer require "cakedc/migrations:~2.3"
