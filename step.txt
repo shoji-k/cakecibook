@@ -52,3 +52,13 @@ composer require "josegonzalez/cakephp-environments":"1.0.0"
 
 # prepare bootstrap/environments
 
+# jenkins can not use git, because installing jenkins way is different
+# but git plugin can not be installed, error ocurred, so skip using jenkins.
+
+# install behat plugin
+## add plugin repository and require-dev to composer.json
+composer require --dev sizuhiko/Bdd:dev-master
+composer require --dev behat/mink-goutte-driver:*
+
+
+
