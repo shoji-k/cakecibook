@@ -46,3 +46,9 @@ flush privileges;
 
 # change impletement authority
 # change Config/core.php
+
+# install plugin to change environments
+composer require "josegonzalez/cakephp-environments":"1.0.0"
+
+# prepare bootstrap/environments
+
