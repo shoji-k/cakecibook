@@ -35,3 +35,14 @@ sudo apt-get install jenkins
 grant all privileges on *.* to webapp@'%' identified by 'password' with grant option;
 flush privileges;
 
+# install cakephp
+# composet init
+# set vendor-dir to Vendor (cakephp rule)
+# composer require "cakephp/cakephp":"2.5.*"
+# Vendor/bin/cake bake project .
+
+# set composer require
+# change Config/bootstrap.php
+
+# change impletement authority
+# change Config/core.php

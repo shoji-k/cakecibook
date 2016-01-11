@@ -18,7 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       id: "vagrant-root", :nfs => false,
       :owner => "vagrant",
       :group => "www-data",
-      :mount_options => ["dmode=755,fmode=775"]
+      :mount_options => ["dmode=775,fmode=775"]
 
     c.vm.provision :chef_solo do |chef|
       chef.log_level = "debug"

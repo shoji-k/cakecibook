@@ -1,0 +1,15 @@
+{
+    "name": "php_ci_book/blogapp",
+    "authors": [
+        {
+            "name": "shoji k",
+            "email": "sample@sample.jp"
+        }
+    ],
+    "config": {
+      "vendor-dir": "Vendor"
+    },
+    "require": {
+        "cakephp/cakephp": "2.5.*"
+    }
+}
