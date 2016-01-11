@@ -60,5 +60,8 @@ composer require "josegonzalez/cakephp-environments":"1.0.0"
 composer require --dev sizuhiko/Bdd:dev-master
 composer require --dev behat/mink-goutte-driver:*
 
+# initialize bdd
+Console/cake Bdd.init
 
+# change behat.yml
 
