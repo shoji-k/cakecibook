@@ -84,3 +84,12 @@ Console/cake migrations.migration run all -d
 # impletement sql
 Console/cake migrations.migration run all
 
+# write some tests
+# bake model
+Console/cake bake model Post
+Console/cake test app Model/Post
+
+# bake controller
+Console/cake bake controller Post
+Console/cake test app Controller/Post
+

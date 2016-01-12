@@ -20,7 +20,8 @@ class PostsControllerTest extends ControllerTestCase {
     public function setUp() {
         parent::setUp();
         $this->controller = $this->generate('Posts', [
-            'components' => ['Paginator', 'Session', 'Auth'],
+            //'components' => ['Paginator', 'Session', 'Auth'],
+            'components' => ['Paginator', 'Session'],
             'models' => ['Post' => ['save']],
             'methods' => ['redirect']
         ]);
@@ -28,16 +29,22 @@ class PostsControllerTest extends ControllerTestCase {
     }
 
     public function testIndexアクションではページングの結果がpostsにセットされること() {
-        $post = Fabricate::build('Post');
+        // $post = Fabricate::build('Post');
+        // $this->controller->Paginator->expects($this->once())
+        //     ->method('paginate')->will($this->returnValue($post->data));
+        $data = [
+            ['Post'=>['id'=>1, 'title'=>'Title1', 'body'=>'Body1']]
+        ];
         $this->controller->Paginator->expects($this->once())
-            ->method('paginate')->will($this->returnValue($post->data));
+            ->method('paginate')->will($this->returnValue($data));
         $vars = $this->testAction('/user/blog', ['method' => 'get', 'return' => 'vars']);
-        $this->assertEquals($post->data, $vars['posts']);
+        // $this->assertEquals($post->data, $vars['posts']);
+        $this->assertEquals($data, $vars['posts']);
     }
 
     public function testAddアクションで保存が失敗したときメッセージがセットされること() {
-        $this->controller->Auth->expects($this->any())
-            ->method('loggedIn')->will($this->returnValue(true));
+        // $this->controller->Auth->expects($this->any())
+        //     ->method('loggedIn')->will($this->returnValue(true));
         $this->controller->Post->expects($this->once())
             ->method('save')->will($this->returnValue(false));
         $this->controller->Session->expects($this->once())
@@ -47,10 +54,10 @@ class PostsControllerTest extends ControllerTestCase {
     }
 
     public function testAddアクションで保存が成功したときはメッセージがセットされ一覧表示にリダイレクトされること() {
-        $this->controller->Auth->expects($this->any())
-            ->method('loggedIn')->will($this->returnValue(true));
-        $this->controller->Auth->staticExpects($this->any())
-            ->method('user')->will($this->returnValue(['id' => '1', 'username' => 'user1']));
+        // $this->controller->Auth->expects($this->any())
+        //     ->method('loggedIn')->will($this->returnValue(true));
+        // $this->controller->Auth->staticExpects($this->any())
+        //     ->method('user')->will($this->returnValue(['id' => '1', 'username' => 'user1']));
         $this->controller->Post->expects($this->once())
             ->method('save')->will($this->returnValue(true));
         $this->controller->Session->expects($this->once())
@@ -59,4 +66,5 @@ class PostsControllerTest extends ControllerTestCase {
             ->method('redirect')->with($this->equalTo(['action' => 'index', 'user_account' => 'user1']));
         $this->testAction('/blogs/new', ['method' => 'post', 'data' => ['title' => 'Title1', 'body' => 'Body1']]);
     }
+
 }
