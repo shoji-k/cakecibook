@@ -67,6 +67,9 @@ Console/cake Bdd.init
 
 # prepare bdd story
 
+# implement bdd
+app/Console/cake Bdd.story
+
 # install migration plugin
 composer require "cakedc/migrations:~2.3"
 
@@ -101,3 +104,7 @@ composer require --dev "sizuhiko/fabricate:1.*"
 composer require --dev "fzaninotto/faker:1.4.*"
 composer require "slywalker/boost_cake:*"
 
+# show bdd definition list
+app/Console/cake Bdd.story -dl --lang=ja
+
+# write some feature/step
