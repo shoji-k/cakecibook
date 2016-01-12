@@ -1,16 +1,32 @@
 {
-    "name": "php_ci_book/blogapp",
-    "authors": [
-        {
-            "name": "shoji k",
-            "email": "sample@sample.jp"
-        }
-    ],
-    "config": {
-      "vendor-dir": "Vendor"
-    },
-    "require": {
-        "cakephp/cakephp": "2.5.*",
-        "josegonzalez/cakephp-environments": "1.0.0"
+  "name": "php_ci_book/blogapp",
+  "authors": [
+    {
+      "name": "shoji k",
+      "email": "sample@sample.jp"
     }
+  ],
+  "config": {
+    "vendor-dir": "Vendor"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git://github.com/sizuhiko/Bdd.git"
+    }
+  ],
+  "require": {
+    "cakephp/cakephp": "2.5.*",
+    "josegonzalez/cakephp-environments": "1.0.0",
+    "cakedc/migrations": "~2.3",
+    "slywalker/boost_cake": "*"
+  },
+  "require-dev": {
+    "pear/console_commandline": "@dev",
+    "pear/pear_exception": "@dev",
+    "sizuhiko/Bdd": "dev-master",
+    "behat/mink-goutte-driver": "*",
+    "sizuhiko/fabricate": "1.*",
+    "fzaninotto/faker": "1.4.*"
+  }
 }

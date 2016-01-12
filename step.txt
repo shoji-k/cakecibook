@@ -52,3 +52,59 @@ composer require "josegonzalez/cakephp-environments":"1.0.0"
 
 # prepare bootstrap/environments
 
+# jenkins can not use git, because installing jenkins way is different
+# but git plugin can not be installed, error ocurred, so skip using jenkins.
+
+# install behat plugin
+## add plugin repository and require-dev to composer.json
+composer require --dev sizuhiko/Bdd:dev-master
+composer require --dev behat/mink-goutte-driver:*
+
+# initialize bdd
+Console/cake Bdd.init
+
+# change behat.yml
+
+# prepare bdd story
+
+# implement bdd
+app/Console/cake Bdd.story
+
+# install migration plugin
+composer require "cakedc/migrations:~2.3"
+
+# forget to create database?
+
+GRANT ALL PRIVILEGES ON *.* TO webapp@localhost IDENTIFIED BY 'passw0rd';
+flush privileges;
+
+# generate migration file
+Console/cake migrations.migration generate create_posts id:primary_key title:string body:text created modified
+
+# dry run mode to check sql
+Console/cake migrations.migration run all -d
+
+# impletement sql
+Console/cake migrations.migration run all
+
+# write some tests
+# bake model
+Console/cake bake model Post
+Console/cake test app Model/Post
+
+# bake controller
+Console/cake bake controller Post
+Console/cake test app Controller/Post
+
+# generate fixture
+Console/cake bake fixture -s -n 1
+
+# install plugins
+composer require --dev "sizuhiko/fabricate:1.*"
+composer require --dev "fzaninotto/faker:1.4.*"
+composer require "slywalker/boost_cake:*"
+
+# show bdd definition list
+app/Console/cake Bdd.story -dl --lang=ja
+
+# write some feature/step
