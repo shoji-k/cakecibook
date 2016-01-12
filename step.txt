@@ -96,6 +96,8 @@ Console/cake test app Controller/Post
 # generate fixture
 Console/cake bake fixture -s -n 1
 
-# install plugin fabricate
+# install plugins
 composer require --dev "sizuhiko/fabricate:1.*"
+composer require --dev "fzaninotto/faker:1.4.*"
+composer require "slywalker/boost_cake:*"
 
