@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ae4a50c6dd1ec340e3ea84ae115a12c1",
-    "content-hash": "21f459506d8441375ba03a5e1feccdf0",
+    "hash": "168d0b6a3a60b29cf0eb1749393c0c43",
+    "content-hash": "29ec62a1428cf941e26b05ce7ee62a26",
     "packages": [
         {
             "name": "cakedc/migrations",
@@ -1455,6 +1455,34 @@
                 "issues": "https://github.com/sizuhiko/Bdd/issues"
             },
             "time": "2014-05-17 09:01:21"
+        },
+        {
+            "name": "sizuhiko/fabricate",
+            "version": "1.2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sizuhiko/Fabricate.git",
+                "reference": "82387a68bc75c0cbfabe44d03096ed42683720c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sizuhiko/Fabricate/zipball/82387a68bc75c0cbfabe44d03096ed42683720c4",
+                "reference": "82387a68bc75c0cbfabe44d03096ed42683720c4",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*"
+            },
+            "type": "cakephp-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "sizuhiko",
+                    "email": "sizuhiko@gmail.com"
+                }
+            ],
+            "description": "CakePHP data generator for Testing",
+            "time": "2015-06-04 23:53:31"
         },
         {
             "name": "sizuhiko/spec-php",

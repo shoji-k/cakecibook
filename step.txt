@@ -93,3 +93,9 @@ Console/cake test app Model/Post
 Console/cake bake controller Post
 Console/cake test app Controller/Post
 
+# generate fixture
+Console/cake bake fixture -s -n 1
+
+# install plugin fabricate
+composer require --dev "sizuhiko/fabricate:1.*"
+
