@@ -16,13 +16,20 @@ $steps->Given('/^"([^"]*)" としてログインしている$/', function($world
 });
 
 $steps->Given('/^"([^"]*)" の記事が (\d+) 件登録されている$/', function($world, $username, $num) {
-    $user = $world->getUser($username);
-    Fabricate::create('Post', $num, function($data, $world) use($user) {
+    // $user = $world->getUser($username);
+    // Fabricate::create('Post', $num, function($data, $world) use($user) {
+    //     return [
+    //         'title' => $world->sequence('title', function($i) {
+    //             return "タイトル{$i}";
+    //         }),
+    //         'author_id' => $user['id'],
+    //     ];
+    // });
+    Fabricate::create('Post', $num, function($data, $world) {
         return [
             'title' => $world->sequence('title', function($i) {
                 return "タイトル{$i}";
             }),
-            'author_id' => $user['id'],
         ];
     });
 });
